@@ -27,6 +27,8 @@ def check_connection(url):
     requests.head(url)
     return True
 
+# Main function that is called when function is
+# invoked
 def lambda_handler(event, context):
 
     # Decode the url argument and fix if no protocol
