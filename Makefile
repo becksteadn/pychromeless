@@ -13,8 +13,11 @@ RUN_FUNCTION_NAME = "glimpseRun"
 TEST_S3_KEY = "test/function/build.zip"
 TEST_FUNCTION_NAME = "glimpseTest"
 
+set:
+	source ./access.secret
+
 clean:
-	rm -rf build build.zip
+	rm -rf build dist
 	rm -rf __pycache__
 
 #
@@ -50,7 +53,7 @@ fetch-dependencies:
 # needed when updating the Lambda configuration in
 # docker-compose.yml or Dockerfile 
 #
-build:
+build: clean fetch-dependencies
 	docker-compose build
 
 #
@@ -75,7 +78,8 @@ pack: clean fetch-dependencies
 	cp -r lib build/.
 	pip install -r requirements.txt -t build/lib/.
 	cd build; zip -9qr build.zip .
-	cp build/build.zip .
+	mkdir -p dist/function
+	cp build/build.zip dist/function/build.zip
 	rm -rf build
 
 #

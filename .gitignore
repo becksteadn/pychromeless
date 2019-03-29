@@ -12,9 +12,8 @@ env/
 
 ### Project specifics
 bin/
-*.zip
-*.tar.gz
+build.zip
 
 ### Sensitive info
 docker-compose.yml
-
+*.secret
