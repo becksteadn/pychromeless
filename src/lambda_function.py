@@ -80,11 +80,24 @@ def lambda_handler(event, context):
             pp.pprint(return_data)
             return return_data
 
-
-    glimpse = gd.GlimpseDriver()
     try:
+        glimpse = None
+        if 'user-agent' in event.keys():
+            print(f"[!] Using User-Agent: {event['user-agent']}")
+            glimpse = gd.GlimpseDriver(gd.Chromium(ua=event['user-agent']))
+        else:
+            print('[!] Using default User-Agent: Chrome/61.0')
+            glimpse = gd.GlimpseDriver()
+
         print('[!] Rendering Page')
+
         glimpse.driver.get(url)
+
+        if not glimpse.verify_user_agent():
+            print('[!] User-Agents do not match')
+            raise Exception('User-Agents do not match')
+        else:
+            print('[!] User-Agents match')
         glimpse.screenshot(local_path)
         
         s3 = S3(BUCKET_NAME)
