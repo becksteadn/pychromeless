@@ -22,15 +22,17 @@ before_script:
   - make build
 
 script:
-  - make run URL=https://google.com
-  - make update URL=https://google.com
-  - make update URL=1.1.1.1
-  - make update URL=http://letmeoutofyour.net:8081/
-  - make update URL=httpbin.org/anything/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold
-    -w 32 | head -n 1)
-  - make update URL=httpbin.org/redirect/6
-  - make update URL=https://httpbin.org/image/png
-  - make update URL=https://httpbin.org/headers
+  - make run URL="https://google.com"
+  - make update URL="https://google.com"
+  - make update URL="1.1.1.1"
+  - make update URL="http://letmeoutofyour.net:8081/"
+  - make update URL="httpbin.org/anything/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold
+    -w 32 | head -n 1)"
+  - make update URL="httpbin.org/redirect/6"
+  - make update URL="https://httpbin.org/image/png"
+  - make update URL="https://httpbin.org/headers"
+  - make update URL="https://self-signed.badssl.com/"
+  - make update URL="https://expired.badssl.com/"
   - make ua UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
   - make ua UA="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:64.0) Gecko/20100101 Firefox/64.0"
   - make ua UA="curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6 enabled)"
@@ -40,9 +42,9 @@ script:
   #- make ua UA="Im gonna mess\n\ryou up"
   - make ua UA=""
   - make run URL="" || echo "SAVED - Made to fail"
-  - make run URL=file:///etc/passwd || echo "SAVED - Made to fail"
-  - make run URL=gibberish || echo "SAVED - Made to fail"
-  - make run URL=mjnjvfidrilyenbbvjwisyzdpycppftjombbxqrtvkcpsbxdnllqupptmhancjqimgcpsfuhzjpdkiaibkcigwyrmaajjszyxvyjekbobdzluepicwnelaaljhkqzmqdupjbhercywvvomwzfszzeptaeaiofiohixlzfwjnlgvilyklivymuknqybunftprnvotjviimcttlyjqfhdefapbpzvzugghzaisdyrmebjurqtzbbheomgmentccdekijireporxxmvqneebbrfzhvgbydzmiaewpqopnxzdsrt || echo "Made to fail"
+  - make run URL="file:///etc/passwd" || echo "SAVED - Made to fail"
+  - make run URL="gibberish" || echo "SAVED - Made to fail"
+  - make run URL="mjnjvfidrilyenbbvjwisyzdpycppftjombbxqrtvkcpsbxdnllqupptmhancjqimgcpsfuhzjpdkiaibkcigwyrmaajjszyxvyjekbobdzluepicwnelaaljhkqzmqdupjbhercywvvomwzfszzeptaeaiofiohixlzfwjnlgvilyklivymuknqybunftprnvotjviimcttlyjqfhdefapbpzvzugghzaisdyrmebjurqtzbbheomgmentccdekijireporxxmvqneebbrfzhvgbydzmiaewpqopnxzdsrt" || echo "Made to fail"
 
 before_deploy:
   - make pack
