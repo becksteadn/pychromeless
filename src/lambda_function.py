@@ -25,7 +25,7 @@ def filter(url):
 # making a HEAD request before spending resources
 # renderiing with Selenium
 def check_connection(url):
-    requests.head(url, timeout=2.0)
+    requests.head(url, timeout=2.0, verify=False)
     return True
 
 def lambda_handler(event, context):
