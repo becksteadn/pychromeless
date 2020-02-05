@@ -4,6 +4,7 @@
 
 import os
 import boto3
+import json
 import base64
 import requests
 from requests.auth import HTTPBasicAuth
@@ -70,7 +71,7 @@ def log_scan(db_data):
     logdna = ''
 
     try:
-        logdna = get_secret()
+        logdna = json.loads(get_secret())
     except Exception as e:
         print(e)
 
