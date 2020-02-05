@@ -16,11 +16,11 @@ def get_secret():
     region_name = "us-east-1"
 
 
-    secrets_client = boto3.client('secretsmanager')
-    secret_arn = "arn:aws:secretsmanager:us-east-1:358663747217:secret:LogDNAIngestionKey-HEKYmj"
-    auth_token = secrets_client.get_secret_value(SecretId=secret_arn).get('logdna-ingestion')
+    #secrets_client = boto3.client('secretsmanager')
+    #secret_arn = "arn:aws:secretsmanager:us-east-1:358663747217:secret:LogDNAIngestionKey-HEKYmj"
+    #auth_token = secrets_client.get_secret_value(SecretId=secret_arn).get('logdna-ingestion')
 
-    return auth_token
+    #return auth_token
 
 
     # Create a Secrets Manager client
@@ -70,7 +70,7 @@ def get_secret():
         else:
             secret = base64.b64decode(get_secret_value_response['SecretBinary'])
 
-    return json.loads(secret)
+    return json.loads(secret).get('logdna-ingestion')
 
 def log_scan(db_data):
     logdna = get_secret()
