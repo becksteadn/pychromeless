@@ -15,6 +15,14 @@ def get_secret():
     secret_name = 'LogDNAIngestionKey' # os.environ['LOGGING_KEY']
     region_name = "us-east-1"
 
+
+    secrets_client = boto3.client('secretsmanager')
+    secret_arn = "arn:aws:secretsmanager:us-east-1:358663747217:secret:LogDNAIngestionKey-HEKYmj"
+    auth_token = secrets_client.get_secret_value(SecretId=secret_arn).get('logdna-ingestion')
+
+    return auth_token
+
+
     # Create a Secrets Manager client
     session = boto3.session.Session()
     client = session.client(
@@ -89,7 +97,7 @@ def log_scan(db_data):
 
     h_data = {"Content-Type": "application/json; charset=UTF-8"}
 
-    submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE', json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna['logdna-ingestion'], ''))
+    submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE', json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna, ''))
 
     if submission.status_code != 200: # or submission.json['status'] != "ok":
         raise ValueError('Got status {}'.format(submission.status_code))
