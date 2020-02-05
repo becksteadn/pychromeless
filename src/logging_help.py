@@ -26,7 +26,7 @@ def get_secret():
     # See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
     # We rethrow the exception by default.
 
-    secret = 'default'
+    secret = '{}'
 
     try:
         get_secret_value_response = client.get_secret_value(
@@ -66,6 +66,7 @@ def get_secret():
 
 def log_scan(db_data):
     logdna = get_secret()
+    print(logdna)
 
     logdata = {
         "lines": [
