@@ -12,7 +12,7 @@ from botocore.exceptions import ClientError
 
 def get_secret():
 
-    secret_name = 'LogDNAIngestionKey' #os.environ['LOGGING_KEY']
+    secret_name = os.environ['LOGGING_KEY']
     region_name = "us-east-1"
 
     # Create a Secrets Manager client
@@ -61,20 +61,13 @@ def get_secret():
         if 'SecretString' in get_secret_value_response:
             secret = get_secret_value_response['SecretString']
         else:
-            decoded_binary_secret = base64.b64decode(get_secret_value_response['SecretBinary'])
+            secret = base64.b64decode(get_secret_value_response['SecretBinary'])
 
-    if secret == '':
-        return decoded_binary_secret
-    else:
-        return secret
+    return json.loads(secret)
 
 def log_scan(db_data):
-    logdna_str = get_secret()
-
-    print(logdna_str)
-
-    logdna = json.loads(logdna_str)
-
+    logdna = get_secret()
+    
     logdata = {
         "lines": [
             {
