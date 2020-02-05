@@ -64,7 +64,6 @@ def get_secret():
     else:
         # Decrypts secret using the associated KMS CMK.
         # Depending on whether the secret is a string or binary, one of these fields will be populated.
-        print(get_secret_value_response)
         if 'SecretString' in get_secret_value_response:
             secret = get_secret_value_response['SecretString']
         else:
@@ -73,13 +72,20 @@ def get_secret():
     return json.loads(secret).get('logdna-ingestion')
 
 def log_scan(db_data):
+
+    log_env = "unknown"
+
+    if "CI" in os.environ and os.environ.get("CI") == True:
+        log_env = "test"
+    else:
+        log_env = "production"
+
     logdna = get_secret()
-    print(logdna)
 
     logdata = {
         "lines": [
             {
-                "line": "A new scan was initiated.",
+                "line": "A new scan was initiated | {}".format(db_data["title"]),
                 "app": "glimpse",
                 "level": "INFO",
                 "env": "experiment",
