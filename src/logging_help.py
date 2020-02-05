@@ -69,6 +69,9 @@ def get_secret():
 
 def log_scan(db_data):
     logdna_str = get_secret()
+
+    print(logdna_str)
+
     logdna = json.loads(logdna_str)
 
     logdata = {
