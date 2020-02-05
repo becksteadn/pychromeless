@@ -12,7 +12,7 @@ from botocore.exceptions import ClientError
 
 def get_secret():
 
-    secret_name = os.environ['LOGGING_KEY']
+    secret_name = 'LogDNAIngestionKey' #os.environ['LOGGING_KEY']
     region_name = "us-east-1"
 
     # Create a Secrets Manager client
