@@ -68,12 +68,7 @@ def get_secret():
         return secret
 
 def log_scan(db_data):
-    logdna = ''
-
-    try:
-        logdna = json.loads(get_secret())
-    except Exception as e:
-        print(e)
+    logdna = json.loads(get_secret())
 
     print(logdna)
 
