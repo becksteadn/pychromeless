@@ -88,7 +88,7 @@ def log_scan(db_data):
                 "line": "A new scan was initiated | {}".format(db_data["title"]),
                 "app": "glimpse",
                 "level": "INFO",
-                "env": "experiment",
+                "env": log_env,
                 "meta": {
                     "urlhash": db_data["urlhash"],
                     "url": db_data["url"],
