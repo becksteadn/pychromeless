@@ -7,6 +7,7 @@ from datetime import datetime
 import glimpse_driver as gd
 from s3_help import S3
 from db_help import DynamoDB
+import logging_help
 from selenium.common.exceptions import WebDriverException
 
 # MD5 hash a string like the URL
@@ -120,6 +121,9 @@ def lambda_handler(event, context):
         pp.pprint(db_data)
 
         db.put(db_data)
+
+        print('[!] Logging Scan')
+        logging_help.log_scan(db_data)
 
         return return_data
 
