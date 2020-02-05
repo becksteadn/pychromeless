@@ -12,7 +12,7 @@ from botocore.exceptions import ClientError
 
 def get_secret():
 
-    secret_name = os.environ['LOGGING_KEY']
+    secret_name = 'LogDNAIngestionKey' # os.environ['LOGGING_KEY']
     region_name = "us-east-1"
 
     # Create a Secrets Manager client
@@ -26,8 +26,7 @@ def get_secret():
     # See https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
     # We rethrow the exception by default.
 
-    secret = ''
-    decoded_binary_secret = ''
+    secret = 'default'
 
     try:
         get_secret_value_response = client.get_secret_value(
@@ -67,7 +66,7 @@ def get_secret():
 
 def log_scan(db_data):
     logdna = get_secret()
-    
+
     logdata = {
         "lines": [
             {
