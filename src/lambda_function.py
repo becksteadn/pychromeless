@@ -35,6 +35,9 @@ def lambda_handler(event, context):
 
     # Decode the url argument and fix if no protocol
     url = urllib.parse.unquote(event['url'])
+
+    logging_help.log_msg('Scan requested for URL: {}'.format(url))
+
     # Filter for potentially malicious or invalid URLs
     filter(url)
 
@@ -81,7 +84,7 @@ def lambda_handler(event, context):
             pp.pprint(return_data)
 
             print('[!] Logging Scan')
-            logging_help.log_scan(db_data)
+            logging_help.log_msg('Existing data returned for hash {}'.format(url_hash))
 
             return return_data
 

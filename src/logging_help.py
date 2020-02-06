@@ -5,10 +5,23 @@
 import os
 import boto3
 import json
+import time
 import base64
 import requests
 from requests.auth import HTTPBasicAuth
 from botocore.exceptions import ClientError
+
+h_data = {"Content-Type": "application/json; charset=UTF-8"}
+
+def get_env():
+    log_env = "unknown"
+
+    if "CI" in os.environ and os.environ.get("CI") == "true":
+        log_env = "test"
+    else:
+        log_env = "production"
+
+    return log_env
 
 def get_secret():
 
@@ -71,16 +84,34 @@ def get_secret():
 
     return json.loads(secret).get('logdna-ingestion')
 
-def log_scan(db_data):
-
-    log_env = "unknown"
-
-    if "CI" in os.environ and os.environ.get("CI") == "true":
-        log_env = "test"
-    else:
-        log_env = "production"
+def log_msg(message):
+    log_env = get_env()
 
     logdna = get_secret()
+
+    logdata = {
+        "lines": [
+            {
+                "line": message,
+                "app": "glimpse",
+                "level": "INFO",
+                "env": log_env
+            }
+        ]
+    }
+
+    submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE&now={}'.format(int(time.time())), json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna, ''))
+
+    if submission.status_code != 200: # or submission.json['status'] != "ok":
+        raise ValueError('Got status {}'.format(submission.status_code))
+
+
+
+def log_scan(db_data):
+    log_env = get_env()
+
+    logdna = get_secret()
+
 
     logdata = {
         "lines": [
@@ -101,9 +132,7 @@ def log_scan(db_data):
         ]
     }
 
-    h_data = {"Content-Type": "application/json; charset=UTF-8"}
-
-    submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE', json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna, ''))
+    submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE&now={}'.format(int(time.time())), json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna, ''))
 
     if submission.status_code != 200: # or submission.json['status'] != "ok":
         raise ValueError('Got status {}'.format(submission.status_code))
