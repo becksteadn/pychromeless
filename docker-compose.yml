@@ -8,6 +8,7 @@ services:
       - PATH=/var/task/bin
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
+      - CI
       - GLIMPSE_BUCKET_NAME=glimpsefiles
       - GLIMPSE_SCREENSHOT_DIR=test/screenshots/  
       - GLIMPSE_DB_TABLE=glimpsetest
