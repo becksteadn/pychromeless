@@ -1,8 +1,6 @@
 language: python
-
 services:
 - docker
-
 env:
   global:
   - PATH=$HOME/.local/bin:$PATH
@@ -11,79 +9,74 @@ env:
   - TEST_FUNCTION_NAME=glimpseTest
   - RUN_FUNCTION_DIR=run/function
   - RUN_FUNCTION_NAME=glimpseRun
-  - secure: "H4K4IjdpfjJfQEtvXHx4lcHq+ru9XfyN0HSvrFKxSgA4raFSSoW07gum1EkirLXakOag8uFstAZokCf4LyFoe0AsdvE8x7TQ7OR7i2d6Lyv4P96SL16E7f5ZItA3dNiBKt9FudWGXbaTrQ71QcubzKrI9KRBM5LOGAQnhwU2cGQzcw8YAWpDxPHKJd+ZZ/zXtNhkLo5R9ZEg6yuoJpZdiPyEWknsYjDIwdIX3wB/AAeBa179IU4DQ2HxLGsPX/CBwXZ6eJWEwVL9Eb1fmiOtJG3LhVEbdZ2Jp8RpYbowjhM9uaIsLAQLJrB6tJ5f1lAhlkC/o8bs8SCNDLNIVqI1hyqk2QYn9ztRd9lXiQiQU8zJeadJ+BU1LnDln9zmY1FszRx3qX7V2nDaCMKpuRtICEL6DTeq/cX5UypaprGlo6Nqk4u28dsnFMkNwYS+ncUR4IZlvPRbXxY/9U5jbiav3Mf2OFTGpqBtd/fS7+8uGmKKm7YFNKcIXJZEk+ekUgXmAxWiB4MWcOCfvMObMJT3oQHWmjBCazH545d9XwZv4KGeiZslboTogQTat84yw5AXszwFJ+PUuvPd1MjCxIF5l16Qmmzk/KqJtSogTI1zJLLiuwgFJ474wdYouDysV3qvv91EQVzV9S1REMAtLajLAhbeXvlhZWT9fZVKkyuDXnI="
-  - secure: "jgHbSu95AWrI7UxSsgJzCwMYpRBewJ87MkhZBfzsDHt3y0thVJHX1553JITAqPDGVv7gHwEPa6JAy0FiXT6KPiCBopGz7LStVfumFNGwd5BKL4JF1ye+Nif+X3cZoETPPrOXUb2olWXL1ldP95VrfHJtzJYjBn2dBa/GuV8zYvXRTsbLNhKMI0QnYj3UqJYqDyXmgxew4C/d3L4FyAmeyWWDmHREAV5OZLhP0pVGC90ns+m2lOTXO16HBmC3ix64bCbbS0UfE/0wS4VdN5BZhe/PA5jw52YRO1lCcM8ILhhnNSnbIykkOuscLlwoVXmz9D3NOas24/cpT0mH11mjHMGmMRwr0w9+AosH+dzAAKQU/czrmWAF0tPC0CE+9ps+O+hV9xoiI9YHi8BfCyecm9m9a0hLxu2/ahXYg6cD2P03JXphHhI7gj1LzzAZxgXipJjj4RNPzQC/yBaUO+dG4M2u5u0/9hRRAjCmm7i23Pr4r5lGveQUHDA5O34GCy1VJBBvv+xwuZlCeD6tboAaNpzqEr9UKIoRdSVvWt22OesEGdLe0pmvm8usi8Gh4Piaq/K7U4oCt6lFTFnENffRfQ13huvah3L0WHDtDgxk7x0iZMmGU2kAatRpXVnWE0E5FaNj//hZszblTUBccH2VvmM3yDg4hWwhjyr46onQ2cA="
+  - LOGGING_KEY=LogDNAIngestionKey
   - AWS_DEFAULT_REGION=us-east-1
-
+  - secure: j2P03KgHjWbas4Q6swpS0Mq2TQRLOFm+Dc13K4cPTqE8YHOQHq50nOGslFQn6K3C2QfqXR4y7kbsH9HU8tdrhy3EAXfekxN2BhSGD1BecuXzbauH7kTXVKY5HozwtxJ1TgP4uig5jaw/XnOL1SFn+TTkXv5H8NCkm4iOIxH4MgMiAPnuoePVJmIIm9hW4OBn4sLS3cbjWL9Y3qrOJbnjASkoIF9Yj9dzlgD2pq/v3hwYyJHfg/If018wcRQqGk8BAIScJrVnj63xdRn6jJGi6cJisQKKCxjJXegeCZ2R3CmRD+wWZ3z3318daPovlK9hvCsAY91x9Q1SVgj2lfau2evDdjVnjnDMOYmU3V93lhRAn4RDt8Jkhr5aYhukmh1Ca5u5T+SOpNjVoOKqCjfzM/VVP5qW4WmYplgoIWMhhfZSFBU2ta6SOcf7g0NusaWnTY1YiAqRlXT+MLnyFMsDhEhUsn0+soOfXSeThFn1aFUT4jHbU2wxdm/beA67KFvkL3HTFn2f5K2T3uvs8tYDFZB9Zjk0iukCC57r0iHa/esf/ENR1we7Bkw1WLGU21eL/hCJEk5NEf+Vf/kgFY2wZagVr+lKS1WMIS5BG3jm1ByNzmFZe+N3IlYH/hQkqPVJh4klj2MNgqRtSknpNl4xRGjLKI4B++7M1h6LC8iQn7I=
+  - secure: Famc1ERr8UfOaU8MCMri2IXiR6rZ1+WKXu7VMJHGoU9G/CM5X/S/ScfK8uesEGRgHfDljpNMdwKkrMnM5Wn3d6r6LrontOi7DKGuBe174h6r9o448UtEaU9ceiEWKOgT/NLplcBBoCTOiYryQF20sgGFJmZeEYc2U034Ic5reqF3bdN12JaQJiK+UemFK5/9PwdYVPUSs6o4Rwb+RHmcFmh6kVeTBQWtxZYlxuJtyeRY7EjVKsKTYdUuvo7fITlNbvXxk8LWiXNxOz9Tq955ZNso23pPTBGN0zMu2QiEi1cGFnZjPfkilGDoDXWdKlAwH3D0ds+t4bCHpFoQsvU1e6u/dl8P8oC9hG6IYTN3z+9L1IVlLYcfqyq2PJtZkgAKBCNV6WQPwR0vMgXgZbXdJs/vcbgg7VeXwDR5Zpnpt3tHYFhKOVsAohh8Fpq5Ka5fF4724/h4Y6APb0LSwcKPezXHzhEIoIboEQfIUqhh/k2S/vBHAhS2QC9AOPp5wHMUC8fYWW3K+IYkyNFkJMTfZijF+7pmw7aVf8vd4PoXzW8fXTWBu9kays0pkPDazJ0zh0AkENyKIyOLYp8CRBrhwCdplYKbsCh96WQbUYKl4UUSFPl+w/rYv7QeQROikn9pwZwAuFX/GUv0noCELnjj6sVyzis0kn87ZF1REfDxH/k=
 install:
-  - pip install awscli
-
+- pip install awscli
 before_script:
-  - make build
-
+- make build
 script:
-  - make run URL="https://google.com"
-  - make update URL="https://google.com"
-  - make update URL="1.1.1.1"
-  - make update URL="http://letmeoutofyour.net:8081/"
-  - make update URL="httpbin.org/anything/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold
-    -w 32 | head -n 1)"
-  - make update URL="httpbin.org/redirect/6"
-  - make update URL="https://httpbin.org/image/png"
-  - make update URL="https://httpbin.org/headers"
-  - make update URL="https://self-signed.badssl.com/"
-  - make update URL="https://expired.badssl.com/"
-  - make ua UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
-  - make ua UA="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:64.0) Gecko/20100101 Firefox/64.0"
-  - make ua UA="curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6 enabled)"
-  - make ua UA="python-requests/1.2.0"
-  - make ua UA="Googlebot/2.1 (+http://www.googlebot.com/bot.html)"
-  - make ua UA="Screw you webmaster!!!!"
-  #- make ua UA="Im gonna mess\n\ryou up"
-  - make ua UA=""
-  - make run URL="" || echo "SAVED - Made to fail"
-  - make run URL="file:///etc/passwd" || echo "SAVED - Made to fail"
-  - make run URL="gibberish" || echo "SAVED - Made to fail"
-  - make run URL="mjnjvfidrilyenbbvjwisyzdpycppftjombbxqrtvkcpsbxdnllqupptmhancjqimgcpsfuhzjpdkiaibkcigwyrmaajjszyxvyjekbobdzluepicwnelaaljhkqzmqdupjbhercywvvomwzfszzeptaeaiofiohixlzfwjnlgvilyklivymuknqybunftprnvotjviimcttlyjqfhdefapbpzvzugghzaisdyrmebjurqtzbbheomgmentccdekijireporxxmvqneebbrfzhvgbydzmiaewpqopnxzdsrt" || echo "Made to fail"
-
+- make run URL="https://google.com"
+- make update URL="https://google.com"
+- make update URL="1.1.1.1"
+- make update URL="http://letmeoutofyour.net:8081/"
+- make update URL="httpbin.org/anything/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' |
+  fold -w 32 | head -n 1)"
+- make update URL="httpbin.org/redirect/6"
+- make update URL="https://httpbin.org/image/png"
+- make update URL="https://httpbin.org/headers"
+- make update URL="https://self-signed.badssl.com/"
+- make update URL="https://expired.badssl.com/"
+- make ua UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+  like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+- make ua UA="Mozilla/5.0 (Windows NT 6.1; WOW64; rv:64.0) Gecko/20100101 Firefox/64.0"
+- make ua UA="curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6
+  enabled)"
+- make ua UA="python-requests/1.2.0"
+- make ua UA="Googlebot/2.1 (+http://www.googlebot.com/bot.html)"
+- make ua UA="Screw you webmaster!!!!"
+- make ua UA=""
+- make run URL="" || echo "SAVED - Made to fail"
+- make run URL="file:///etc/passwd" || echo "SAVED - Made to fail"
+- make run URL="gibberish" || echo "SAVED - Made to fail"
+- make run URL="mjnjvfidrilyenbbvjwisyzdpycppftjombbxqrtvkcpsbxdnllqupptmhancjqimgcpsfuhzjpdkiaibkcigwyrmaajjszyxvyjekbobdzluepicwnelaaljhkqzmqdupjbhercywvvomwzfszzeptaeaiofiohixlzfwjnlgvilyklivymuknqybunftprnvotjviimcttlyjqfhdefapbpzvzugghzaisdyrmebjurqtzbbheomgmentccdekijireporxxmvqneebbrfzhvgbydzmiaewpqopnxzdsrt"
+  || echo "Made to fail"
 before_deploy:
-  - make pack
-
+- make pack
 deploy:
-  - provider: s3
-    access_key_id: "$AWS_ACCESS_KEY_ID"
-    secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-    bucket: "$BUCKET_NAME"
-    region: us-east-1
-    upload_dir: "$TEST_FUNCTION_DIR"
-    local_dir: dist/function
-    skip_cleanup: true
-    on:
-      branch: build
-  - provider: s3
-    access_key_id: "$AWS_ACCESS_KEY_ID"
-    secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-    bucket: "$BUCKET_NAME"
-    region: us-east-1
-    upload_dir: "$RUN_FUNCTION_DIR"
-    local_dir: dist/function
-    skip_cleanup: true
-    on:
-      branch: master
-
+- provider: s3
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: "$BUCKET_NAME"
+  region: us-east-1
+  upload_dir: "$TEST_FUNCTION_DIR"
+  local_dir: dist/function
+  skip_cleanup: true
+  on:
+    branch: build
+- provider: s3
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: "$BUCKET_NAME"
+  region: us-east-1
+  upload_dir: "$RUN_FUNCTION_DIR"
+  local_dir: dist/function
+  skip_cleanup: true
+  on:
+    branch: master
 after_deploy:
-  - if [ $TRAVIS_BRANCH == "build" ]; then
-      aws lambda update-function-code --function-name $TEST_FUNCTION_NAME --s3-bucket $BUCKET_NAME --s3-key $TEST_FUNCTION_DIR/build.zip;
-    else echo "Skipping Lambda update for $TEST_FUNCTION_NAME.";
-    fi
-  - if [ $TRAVIS_BRANCH == "master" ]; then
-      aws lambda update-function-code --function-name $RUN_FUNCTION_NAME --s3-bucket $BUCKET_NAME --s3-key $RUN_FUNCTION_DIR/build.zip;
-    else echo "Skipping Lambda update for $RUN_FUNCTION_NAME.";
-    fi
-
+- if [ $TRAVIS_BRANCH == "build" ]; then aws lambda update-function-code --function-name
+  $TEST_FUNCTION_NAME --s3-bucket $BUCKET_NAME --s3-key $TEST_FUNCTION_DIR/build.zip;
+  else echo "Skipping Lambda update for $TEST_FUNCTION_NAME."; fi
+- if [ $TRAVIS_BRANCH == "master" ]; then aws lambda update-function-code --function-name
+  $RUN_FUNCTION_NAME --s3-bucket $BUCKET_NAME --s3-key $RUN_FUNCTION_DIR/build.zip;
+  else echo "Skipping Lambda update for $RUN_FUNCTION_NAME."; fi
 notifications:
   slack:
     template:
-        - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of *%{repository_slug}* @ %{branch} %{result} in %{duration}"
+    - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of *%{repository_slug}*
+      @ %{branch} %{result} in %{duration}
     rooms:
       secure: t5ThZ20j8M5RwvJQQYyN+0MYjqefgrv7OtdUYDpzpxCCB2o9lGTYmIuQrLRZY7BIA1SZS3nIiZvwudR41ibcjfF/Np5W0FntezLRmfpPCic4V8aG4F0iTINNJPK6+6KDHmKEylSjtB30lhp2Xa/4uXvrcHRbFct/+QDAD6WtjkKQvm1OFRFq7GVkWCHp5AyQRzaJaKGJ9OjWJAHaYxN+QTuubLW0PVjbeb/3b7qt3v/iqCngmynaan5xghy2P9RiMo9ll5aTSiSrtQC1s1o2uR4ISheZ5BJPT6yypemlxPUWMBe1t48JZXp2HQCm4yncgqlavwmeWffw/cN7vYYjuQeNhgWUYVI03PbbNvF/yX1a++PFtnL4Q1/6ZKo/xcQG74fVCmnVzdBQ9s3I4JybgRTyQyXpQbmRQRmZkQKojCtenycc8ShtkRyRN/H05yq1gmRd55qBxZb2rzaFmd+uKnM1NbQmPzhR7Dn1YRLPpFBFlOVYl7xlDi8ITpdxUJvjjjbgIkTn0UamYjdG1MjXWOFgi+qQfPnQ5vYWGNOxiGOQ7uGlD8pvatyzFJkPhMBSU3QNm5OB7hTlPJDwZCMmtvV+uO4itXU6dfPO1SZdtgshUi1hUNtuu7r1JsAtq7zGXaYjLhk7feNJ6z3oq6V8DVd7HQK+TkEUN6OghAFae20=
