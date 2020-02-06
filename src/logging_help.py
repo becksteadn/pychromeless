@@ -75,7 +75,7 @@ def log_scan(db_data):
 
     log_env = "unknown"
 
-    if "CI" in os.environ and os.environ.get("CI") == "true":
+    if "CI" in os.environ: #and os.environ.get("CI") == "true":
         log_env = "test"
     else:
         log_env = "production"
