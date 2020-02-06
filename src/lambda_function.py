@@ -84,7 +84,7 @@ def lambda_handler(event, context):
             pp.pprint(return_data)
 
             print('[!] Logging Scan')
-            logging_help.log_scan(db_data)
+            logging_help.log_msg('Existing data returned for hash {}'.format(url_hash))
 
             return return_data
 
