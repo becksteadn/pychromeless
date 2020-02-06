@@ -35,6 +35,9 @@ def lambda_handler(event, context):
 
     # Decode the url argument and fix if no protocol
     url = urllib.parse.unquote(event['url'])
+
+    logging_help.log_msg('Scan requested for URL: {}'.format(url))
+
     # Filter for potentially malicious or invalid URLs
     filter(url)
 
