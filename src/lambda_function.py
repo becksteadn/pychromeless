@@ -79,6 +79,10 @@ def lambda_handler(event, context):
         if exists:
             print('[!] Existing Data')
             pp.pprint(return_data)
+
+            print('[!] Logging Scan')
+            logging_help.log_scan(db_data)
+
             return return_data
 
     try:
