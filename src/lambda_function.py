@@ -116,6 +116,8 @@ def lambda_handler(event, context):
         if db_data['title'] == '':
             db_data['title'] = 'No title given'
 
+        db_data['net-requests'] = glimpse.get_network_history()
+
         # Don't need if db_data['numscans'] is set to 0 when
         # the DB GET doesn't exist 
         #if exists:
