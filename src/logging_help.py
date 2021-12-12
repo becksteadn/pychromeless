@@ -23,6 +23,14 @@ def get_env():
 
     return log_env
 
+def get_parameter():
+    paramter_name = 'LogDNAIngestionKey'
+    region_name = "us-east-1"
+
+    ssm_client = boto3.client('ssm', region_name=region_name)
+    response = ssm_client.get_parameter(Name=paramter_name)
+    return response['Parameters']['Value']
+
 def get_secret():
 
     secret_name = 'LogDNAIngestionKey' # os.environ['LOGGING_KEY']
@@ -87,7 +95,10 @@ def get_secret():
 def log_msg(message):
     log_env = get_env()
 
-    logdna = get_secret()
+    try:
+        logdna = get_parameter()
+    except:
+        return
 
     logdata = {
         "lines": [
@@ -103,7 +114,8 @@ def log_msg(message):
     submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE&now={}'.format(int(time.time())), json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna, ''))
 
     if submission.status_code != 200: # or submission.json['status'] != "ok":
-        raise ValueError('Got status {}'.format(submission.status_code))
+        print('Got status {}'.format(submission.status_code))
+        #raise ValueError('Got status {}'.format(submission.status_code))
 
 
 
