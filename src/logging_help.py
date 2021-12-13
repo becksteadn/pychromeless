@@ -28,8 +28,11 @@ def get_parameter():
     region_name = "us-east-1"
 
     ssm_client = boto3.client('ssm', region_name=region_name)
-    response = ssm_client.get_parameter(Name=paramter_name)
-    return response['Parameters']['Value']
+    response = ssm_client.get_parameter(
+        Name=paramter_name,
+        WithDecryption=True
+    )
+    return response['Parameter']['Value']
 
 def get_secret():
 
@@ -115,6 +118,7 @@ def log_msg(message):
 
     if submission.status_code != 200: # or submission.json['status'] != "ok":
         print('Got status {}'.format(submission.status_code))
+        print(submission.json())
         #raise ValueError('Got status {}'.format(submission.status_code))
 
 
@@ -122,7 +126,7 @@ def log_msg(message):
 def log_scan(db_data):
     log_env = get_env()
 
-    logdna = get_secret()
+    logdna = get_parameter()
 
 
     logdata = {
@@ -147,4 +151,5 @@ def log_scan(db_data):
     submission = requests.post('https://logs.logdna.com/logs/ingest?hostname=GLIMPSE&now={}'.format(int(time.time())), json=logdata, headers=h_data, auth=HTTPBasicAuth(logdna, ''))
 
     if submission.status_code != 200: # or submission.json['status'] != "ok":
-        raise ValueError('Got status {}'.format(submission.status_code))
+        print('Got status {}'.format(submission.status_code))
+        #raise ValueError('Got status {}'.format(submission.status_code))

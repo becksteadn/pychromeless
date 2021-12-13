@@ -90,7 +90,7 @@ pack: clean fetch-dependencies
 #
 deploy-test: pack
 	aws s3 cp ./dist/function/build.zip s3://${S3_BUCKET}/${TEST_S3_KEY} --profile ${AWS_USER}
-	aws --region us-east-1 lambda update-function-code --function-name ${TEST_FUNCTION_NAME} --s3-bucket ${S3_BUCKET} --s3-key ${TEST_S3_KEY} --profile ${AWS_USER} 
+	aws --region us-east-1 lambda update-function-code --function-name ${TEST_FUNCTION_NAME} --s3-bucket ${S3_BUCKET} --s3-key ${TEST_S3_KEY} --profile ${AWS_USER} > /dev/null
 
 #
 # Copy the code from the test environment to
@@ -98,5 +98,5 @@ deploy-test: pack
 #
 deploy-run:
 	aws s3 cp s3://${S3_BUCKET}/${TEST_S3_KEY} s3://${S3_BUCKET}/${RUN_S3_KEY} --profile ${AWS_USER}
-	aws lambda update-function-code --function-name ${RUN_FUNCTION_NAME} --s3-bucket ${S3_BUCKET} --s3-key ${RUN_S3_KEY} --profile ${AWS_USER}
+	aws lambda update-function-code --function-name ${RUN_FUNCTION_NAME} --s3-bucket ${S3_BUCKET} --s3-key ${RUN_S3_KEY} --profile ${AWS_USER} > /dev/null
 
